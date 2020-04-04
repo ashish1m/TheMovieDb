@@ -53,7 +53,7 @@ public class ApiClient {
         return httpClient.build();
     }
 
-    public TMDbService getGithubRepoService() {
+    public TMDbService getTMDbService() {
         return mRetrofit.create(TMDbService.class);
     }
 }

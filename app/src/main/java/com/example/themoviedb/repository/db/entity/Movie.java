@@ -4,8 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.util.List;
-
 @Entity
 public class Movie {
 
@@ -18,8 +16,6 @@ public class Movie {
     private String video;
 
     private String title;
-
-    private List<String> genre_ids;
 
     private String poster_path;
 
@@ -77,14 +73,6 @@ public class Movie {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public List<String> getGenre_ids() {
-        return genre_ids;
-    }
-
-    public void setGenre_ids(List<String> genre_ids) {
-        this.genre_ids = genre_ids;
     }
 
     public String getPoster_path() {

@@ -6,4 +6,5 @@
     <color name="colorTitle">#000000</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorSearchBar">#efeff0</color>
+    <color name="colorDivider">#E8E8E8</color>
 </resources>
