@@ -1,10 +1,12 @@
-package com.example.themoviedb;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.themoviedb.ui.movie_list;
 
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.themoviedb.R;
+
+public class MovieListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
