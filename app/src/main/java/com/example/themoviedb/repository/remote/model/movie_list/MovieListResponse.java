@@ -1,10 +1,10 @@
-package com.example.themoviedb.repository.remote.model;
+package com.example.themoviedb.repository.remote.model.movie_list;
 
 import com.example.themoviedb.repository.db.entity.Movie;
 
 import java.util.List;
 
-public class MovieResponse {
+public class MovieListResponse {
 
     private String page;
 
