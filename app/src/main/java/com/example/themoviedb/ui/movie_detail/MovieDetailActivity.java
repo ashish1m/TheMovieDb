@@ -72,9 +72,8 @@ public class MovieDetailActivity extends AppCompatActivity {
 
     private void updateMovieDetail(MovieDetail movieDetail) {
         mMovieTitleTv.setText(movieDetail.getTitle());
-        String movieDuration = movieDetail.getRuntime() + " mins";
-        mMovieDurationTv.setText(movieDuration);
-        mMovieReleaseTv.setText(movieDetail.getRelease_date());
+        mMovieDurationTv.setText(Utils.getFormattedTime(movieDetail.getRuntime()));
+        mMovieReleaseTv.setText(Utils.getFormattedDate(movieDetail.getRelease_date()));
         mMovieLanguageTv.setText(mMovieDetailViewModel.getLanguages(movieDetail.getSpoken_languages()));
         mMovieGenresTv.setText(mMovieDetailViewModel.getGenres(movieDetail.getGenres()));
         String movieRating = movieDetail.getVote_average() + " & " + movieDetail.getVote_count() + " votes";

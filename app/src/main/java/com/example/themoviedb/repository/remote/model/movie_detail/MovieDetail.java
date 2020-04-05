@@ -14,23 +14,23 @@ public class MovieDetail {
 
     private String backdrop_path;
 
-    private String revenue;
+    private int revenue;
 
     private List<Genres> genres;
 
     private String popularity;
 
-    private String id;
+    private int id;
 
-    private String vote_count;
+    private int vote_count;
 
-    private String budget;
+    private int budget;
 
     private String overview;
 
     private String original_title;
 
-    private String runtime;
+    private int runtime;
 
     private String poster_path;
 
@@ -88,11 +88,11 @@ public class MovieDetail {
         this.backdrop_path = backdrop_path;
     }
 
-    public String getRevenue() {
+    public int getRevenue() {
         return revenue;
     }
 
-    public void setRevenue(String revenue) {
+    public void setRevenue(int revenue) {
         this.revenue = revenue;
     }
 
@@ -112,27 +112,27 @@ public class MovieDetail {
         this.popularity = popularity;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getVote_count() {
+    public int getVote_count() {
         return vote_count;
     }
 
-    public void setVote_count(String vote_count) {
+    public void setVote_count(int vote_count) {
         this.vote_count = vote_count;
     }
 
-    public String getBudget() {
+    public int getBudget() {
         return budget;
     }
 
-    public void setBudget(String budget) {
+    public void setBudget(int budget) {
         this.budget = budget;
     }
 
@@ -152,11 +152,11 @@ public class MovieDetail {
         this.original_title = original_title;
     }
 
-    public String getRuntime() {
+    public int getRuntime() {
         return runtime;
     }
 
-    public void setRuntime(String runtime) {
+    public void setRuntime(int runtime) {
         this.runtime = runtime;
     }
 
