@@ -2,7 +2,7 @@ package com.example.themoviedb.repository.remote.model.movie_detail;
 
 import java.util.List;
 
-public class MovieDetailResponse {
+public class MovieDetail {
 
     private String original_language;
 
@@ -39,8 +39,6 @@ public class MovieDetailResponse {
     private String release_date;
 
     private String vote_average;
-
-    private String belongs_to_collection;
 
     private String tagline;
 
@@ -192,14 +190,6 @@ public class MovieDetailResponse {
 
     public void setVote_average(String vote_average) {
         this.vote_average = vote_average;
-    }
-
-    public String getBelongs_to_collection() {
-        return belongs_to_collection;
-    }
-
-    public void setBelongs_to_collection(String belongs_to_collection) {
-        this.belongs_to_collection = belongs_to_collection;
     }
 
     public String getTagline() {

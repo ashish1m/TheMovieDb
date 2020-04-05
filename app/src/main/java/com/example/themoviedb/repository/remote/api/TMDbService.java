@@ -1,12 +1,13 @@
 package com.example.themoviedb.repository.remote.api;
 
 import com.example.themoviedb.repository.remote.model.configuration.ConfigurationResponse;
-import com.example.themoviedb.repository.remote.model.movie_credit.CreditResponse;
-import com.example.themoviedb.repository.remote.model.movie_detail.MovieDetailResponse;
+import com.example.themoviedb.repository.remote.model.movie_credit.Credit;
+import com.example.themoviedb.repository.remote.model.movie_detail.MovieDetail;
 import com.example.themoviedb.repository.remote.model.movie_list.MovieListResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface TMDbService {
@@ -27,8 +28,8 @@ public interface TMDbService {
     Call<ConfigurationResponse> getConfiguration(@Query("api_key") String apiKey);
 
     @GET(MOVIE_DETAIL)
-    Call<MovieDetailResponse> getMovieDetail(@Query("api_key") String apiKey, @Query("movie_id") String movieId);
+    Call<MovieDetail> getMovieDetail(@Path("movie_id") String movieId, @Query("api_key") String apiKey);
 
     @GET(MOVIE_CREDITS)
-    Call<CreditResponse> getMovieCredits(@Query("api_key") String apiKey, @Query("movie_id") String movieId);
+    Call<Credit> getMovieCredits(@Path("movie_id") String movieId, @Query("api_key") String apiKey);
 }

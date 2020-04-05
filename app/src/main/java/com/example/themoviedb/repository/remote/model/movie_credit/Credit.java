@@ -2,7 +2,7 @@ package com.example.themoviedb.repository.remote.model.movie_credit;
 
 import java.util.List;
 
-public class CreditResponse {
+public class Credit {
 
     private List<Cast> cast;
 

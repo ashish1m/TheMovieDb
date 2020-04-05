@@ -10,8 +10,8 @@ import com.example.themoviedb.repository.db.entity.Movie;
 import com.example.themoviedb.repository.remote.api.ApiClient;
 import com.example.themoviedb.repository.remote.api.TMDbService;
 import com.example.themoviedb.repository.remote.model.configuration.ConfigurationResponse;
-import com.example.themoviedb.repository.remote.model.movie_credit.CreditResponse;
-import com.example.themoviedb.repository.remote.model.movie_detail.MovieDetailResponse;
+import com.example.themoviedb.repository.remote.model.movie_credit.Credit;
+import com.example.themoviedb.repository.remote.model.movie_detail.MovieDetail;
 import com.example.themoviedb.repository.remote.model.movie_list.MovieListResponse;
 
 import java.util.List;
@@ -26,8 +26,8 @@ public class Repository {
     private final TMDbService mTMDbService;
     private final MovieDao mMovieDao;
     private LiveData<List<Movie>> mMovieList;
-    private MutableLiveData<MovieDetailResponse> mMovieDetail;
-    private MutableLiveData<CreditResponse> mMovieCredit;
+    private MutableLiveData<MovieDetail> mMovieDetail;
+    private MutableLiveData<Credit> mMovieCredit;
 
     private Repository(AppDatabase db) {
         mMovieDao = db.movieDao();
@@ -84,36 +84,40 @@ public class Repository {
         });
     }
 
-    public void getMovieDetail(String movieId) {
-        mTMDbService.getMovieDetail(TMDbService.API_KEY, movieId).enqueue(new Callback<MovieDetailResponse>() {
+    public MutableLiveData<MovieDetail> getMovieDetail(String movieId) {
+        mTMDbService.getMovieDetail(movieId, TMDbService.API_KEY).enqueue(new Callback<MovieDetail>() {
             @Override
-            public void onResponse(Call<MovieDetailResponse> call, Response<MovieDetailResponse> response) {
+            public void onResponse(Call<MovieDetail> call, Response<MovieDetail> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     mMovieDetail.postValue(response.body());
                 }
             }
 
             @Override
-            public void onFailure(Call<MovieDetailResponse> call, Throwable t) {
+            public void onFailure(Call<MovieDetail> call, Throwable t) {
                 t.printStackTrace();
             }
         });
+
+        return mMovieDetail;
     }
 
-    public void getMovieCast(String movieId) {
-        mTMDbService.getMovieCredits(TMDbService.API_KEY, movieId).enqueue(new Callback<CreditResponse>() {
+    public MutableLiveData<Credit> getMovieCast(String movieId) {
+        mTMDbService.getMovieCredits(movieId, TMDbService.API_KEY).enqueue(new Callback<Credit>() {
             @Override
-            public void onResponse(Call<CreditResponse> call, Response<CreditResponse> response) {
+            public void onResponse(Call<Credit> call, Response<Credit> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     mMovieCredit.postValue(response.body());
                 }
             }
 
             @Override
-            public void onFailure(Call<CreditResponse> call, Throwable t) {
+            public void onFailure(Call<Credit> call, Throwable t) {
                 t.printStackTrace();
             }
         });
+
+        return mMovieCredit;
     }
 
     public LiveData<List<Movie>> getMovieList() {

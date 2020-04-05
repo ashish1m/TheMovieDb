@@ -19,6 +19,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.View
 
     private final LayoutInflater mInflater;
     private List<Movie> mMovieList;
+    private OnItemClickListener mListener;
 
     public MovieListAdapter(Context context) {
         mInflater = LayoutInflater.from(context);
@@ -27,6 +28,10 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.View
     public void updateList(List<Movie> movieList) {
         mMovieList = movieList;
         notifyDataSetChanged();
+    }
+
+    public void addOnItemClickListener(OnItemClickListener listener) {
+        mListener = listener;
     }
 
     @NonNull
@@ -49,22 +54,42 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.View
         return 0;
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    interface OnItemClickListener {
+        void onItemClick(Movie movie);
+    }
 
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+        private View mMainLayout;
         private ImageView mPosterIv;
         private TextView mMovieTitleTv, mMovieRatingTv;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            mMainLayout = itemView.findViewById(R.id.main_layout);
             mPosterIv = itemView.findViewById(R.id.iv_movie);
             mMovieTitleTv = itemView.findViewById(R.id.tv_title);
             mMovieRatingTv = itemView.findViewById(R.id.tv_rating);
+
+            mMainLayout.setOnClickListener(this);
         }
 
         void bind(Movie movie) {
             mMovieTitleTv.setText(movie.getTitle());
             mMovieRatingTv.setText(movie.getVote_average());
+            mMainLayout.setTag(movie);
+        }
+
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.main_layout:
+                    if (mListener != null) {
+                        mListener.onItemClick((Movie) mMainLayout.getTag());
+                    }
+                    break;
+            }
         }
     }
 }

@@ -1,8 +1,10 @@
 package com.example.themoviedb.ui.movie_list;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -12,11 +14,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.themoviedb.R;
 import com.example.themoviedb.repository.db.entity.Movie;
+import com.example.themoviedb.ui.movie_detail.MovieDetailActivity;
 
 import java.util.List;
 import java.util.Objects;
 
-public class MovieListActivity extends AppCompatActivity {
+public class MovieListActivity extends AppCompatActivity implements MovieListAdapter.OnItemClickListener {
 
     private RecyclerView mMovieListRv;
     private MovieListViewModel mMovieListViewModel;
@@ -26,8 +29,10 @@ public class MovieListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         mMovieListViewModel = new ViewModelProvider(this).get(MovieListViewModel.class);
         mMovieListAdapter = new MovieListAdapter(this);
+        mMovieListAdapter.addOnItemClickListener(this);
 
         initView();
     }
@@ -47,5 +52,12 @@ public class MovieListActivity extends AppCompatActivity {
                 mMovieListAdapter.updateList(movies);
             }
         });
+    }
+
+    @Override
+    public void onItemClick(Movie movie) {
+        Intent intent = new Intent(MovieListActivity.this, MovieDetailActivity.class);
+        intent.putExtra(MovieDetailActivity.MOVIE_ID, movie.getId());
+        startActivity(intent);
     }
 }
