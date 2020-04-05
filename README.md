@@ -1,5 +1,5 @@
 # TheMovieDb
-![Build Status](https://github.com/ashish1m/TheMovieDb/workflows/Android%20CI/badge.svg)
+[![Build Status](https://github.com/ashish1m/TheMovieDb/workflows/Android%20CI/badge.svg](https://github.com/ashish1m/TheMovieDb/workflows/Android%20CI)
 
 The application shows the list of Top rated movies from [The Movie DB](https://www.themoviedb.org).
 
