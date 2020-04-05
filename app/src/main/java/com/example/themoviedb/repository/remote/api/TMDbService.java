@@ -1,6 +1,6 @@
 package com.example.themoviedb.repository.remote.api;
 
-import com.example.themoviedb.repository.remote.model.configuration.ConfigurationResponse;
+import com.example.themoviedb.repository.remote.model.configuration.Configuration;
 import com.example.themoviedb.repository.remote.model.movie_credit.Credit;
 import com.example.themoviedb.repository.remote.model.movie_detail.MovieDetail;
 import com.example.themoviedb.repository.remote.model.movie_list.MovieListResponse;
@@ -25,7 +25,7 @@ public interface TMDbService {
     Call<MovieListResponse> fetchTopRatedMovies(@Query("api_key") String apiKey);
 
     @GET(CONFIGURATION)
-    Call<ConfigurationResponse> getConfiguration(@Query("api_key") String apiKey);
+    Call<Configuration> getConfiguration(@Query("api_key") String apiKey);
 
     @GET(MOVIE_DETAIL)
     Call<MovieDetail> getMovieDetail(@Path("movie_id") String movieId, @Query("api_key") String apiKey);

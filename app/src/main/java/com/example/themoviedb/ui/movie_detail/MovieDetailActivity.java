@@ -9,10 +9,12 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.bumptech.glide.Glide;
 import com.example.themoviedb.R;
 import com.example.themoviedb.repository.remote.model.movie_credit.Cast;
 import com.example.themoviedb.repository.remote.model.movie_credit.Credit;
 import com.example.themoviedb.repository.remote.model.movie_detail.MovieDetail;
+import com.example.themoviedb.util.Utils;
 
 import java.util.List;
 
@@ -78,6 +80,10 @@ public class MovieDetailActivity extends AppCompatActivity {
         String movieRating = movieDetail.getVote_average() + " & " + movieDetail.getVote_count() + " votes";
         mMovieRatingPtTv.setText(movieRating);
         mMovieAboutTv.setText(movieDetail.getOverview());
+
+        Glide.with(this)
+                .load(Utils.getBackDropUrl(movieDetail.getBackdrop_path()))
+                .into(mMovieIv);
     }
 
     private void updateMovieCast(List<Cast> castList) {

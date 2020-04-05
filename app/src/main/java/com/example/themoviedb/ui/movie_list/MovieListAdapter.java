@@ -10,8 +10,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.themoviedb.R;
 import com.example.themoviedb.repository.db.entity.Movie;
+import com.example.themoviedb.util.Utils;
 
 import java.util.List;
 
@@ -79,6 +81,10 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.View
             mMovieTitleTv.setText(movie.getTitle());
             mMovieRatingTv.setText(movie.getVote_average());
             mMainLayout.setTag(movie);
+
+            Glide.with(itemView)
+                    .load(Utils.getPosterUrl(movie.getPoster_path()))
+                    .into(mPosterIv);
         }
 
         @Override

@@ -2,7 +2,7 @@ package com.example.themoviedb.repository.remote.model.configuration;
 
 import java.util.List;
 
-public class ConfigurationResponse {
+public class Configuration {
 
     private Images images;
 

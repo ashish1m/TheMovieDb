@@ -11,6 +11,10 @@ public class TheMovieApp extends Application {
     private static TheMovieApp sInstance;
     private AppExecutor mAppExecutor;
 
+    public static TheMovieApp getInstance() {
+        return sInstance;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -18,11 +22,8 @@ public class TheMovieApp extends Application {
         sInstance = this;
         mAppExecutor = new AppExecutor();
 
+        getRepository().fetchConfiguration();
         getRepository().fetchTopRatedMovies();
-    }
-
-    public static TheMovieApp getInstance() {
-        return sInstance;
     }
 
     public AppDatabase getDatabase() {

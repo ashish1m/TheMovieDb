@@ -9,10 +9,11 @@ import com.example.themoviedb.repository.db.dao.MovieDao;
 import com.example.themoviedb.repository.db.entity.Movie;
 import com.example.themoviedb.repository.remote.api.ApiClient;
 import com.example.themoviedb.repository.remote.api.TMDbService;
-import com.example.themoviedb.repository.remote.model.configuration.ConfigurationResponse;
+import com.example.themoviedb.repository.remote.model.configuration.Configuration;
 import com.example.themoviedb.repository.remote.model.movie_credit.Credit;
 import com.example.themoviedb.repository.remote.model.movie_detail.MovieDetail;
 import com.example.themoviedb.repository.remote.model.movie_list.MovieListResponse;
+import com.example.themoviedb.shared_prefs.SharedPrefManager;
 
 import java.util.List;
 
@@ -49,15 +50,17 @@ public class Repository {
         return sInstance;
     }
 
-    public void getConfiguration() {
-        mTMDbService.getConfiguration(TMDbService.API_KEY).enqueue(new Callback<ConfigurationResponse>() {
+    public void fetchConfiguration() {
+        mTMDbService.getConfiguration(TMDbService.API_KEY).enqueue(new Callback<Configuration>() {
             @Override
-            public void onResponse(Call<ConfigurationResponse> call, Response<ConfigurationResponse> response) {
-
+            public void onResponse(Call<Configuration> call, Response<Configuration> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    SharedPrefManager.getInstance().saveConfiguration(response.body());
+                }
             }
 
             @Override
-            public void onFailure(Call<ConfigurationResponse> call, Throwable t) {
+            public void onFailure(Call<Configuration> call, Throwable t) {
                 t.printStackTrace();
             }
         });
